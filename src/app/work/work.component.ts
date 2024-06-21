@@ -1,4 +1,5 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import gsap from 'gsap';
 
 @Component({
@@ -8,6 +9,10 @@ import gsap from 'gsap';
 })
 export class WorkComponent implements OnInit, AfterViewInit {
 
+
+  constructor (private snackBar: MatSnackBar) {
+    
+  }
   ngOnInit(): void {
     gsap.registerPlugin(); // Register GSAP plugins if needed
 
@@ -31,5 +36,9 @@ export class WorkComponent implements OnInit, AfterViewInit {
       stagger: 0.15
     });
   }
-
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 2000, // duration in milliseconds
+    });
+  }
 }
